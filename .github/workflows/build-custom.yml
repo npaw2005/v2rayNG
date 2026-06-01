@@ -56,7 +56,8 @@ jobs:
         working-directory: AndroidLibXrayLite
         run: |
           go clean -modcache
-          go mod edit -replace github.com/xtls/xray-core=github.com/npaw2005/Xray-core-allowinsecure@latest
+          go mod edit -require=github.com/npaw2005/Xray-core-allowinsecure@latest
+          go mod edit -droprequire=github.com/xtls/xray-core
           cat go.mod
           go mod tidy -v
           
@@ -68,8 +69,10 @@ jobs:
           
       - name: Copy compiled AAR to v2rayNG
         run: |
+          mkdir -p V2rayNG/app/libs
           cp AndroidLibXrayLite/libv2ray.aar V2rayNG/app/libs/
           ls -la V2rayNG/app/libs/
+
           
       - name: Build APK
         working-directory: V2rayNG
