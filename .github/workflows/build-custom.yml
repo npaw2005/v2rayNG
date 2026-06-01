@@ -47,7 +47,7 @@ jobs:
       - name: Initialize gomobile
         run: |
           export PATH=$PATH:$(go env GOPATH)/bin
-          gomobile init -ndk ${{ env.ANDROID_NDK }}
+          gomobile init 
           
       - name: Clone AndroidLibXrayLite
         run: git clone https://github.com/2dust/AndroidLibXrayLite.git
