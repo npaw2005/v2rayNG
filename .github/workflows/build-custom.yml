@@ -57,7 +57,7 @@ jobs:
         run: |
           go clean -modcache
           go mod edit -droprequire=github.com/xtls/xray-core
-          go mod get github.com/npaw2005/Xray-core-allowinsecure@latest
+          go get github.com/npaw2005/Xray-core-allowinsecure@latest
           cat go.mod
           go mod tidy -v
           
