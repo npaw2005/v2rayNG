@@ -57,13 +57,14 @@ jobs:
         run: |
           go clean -modcache
           go mod edit -replace github.com/xtls/xray-core=github.com/npaw2005/Xray-core-allowinsecure@latest
+          cat go.mod
           go mod tidy -v
           
       - name: Build native library with gomobile
         working-directory: AndroidLibXrayLite
         run: |
           export PATH=$PATH:$(go env GOPATH)/bin
-          gomobile bind -v -target=android -androidapi 21 -ldflags='-s -w' ./
+          gomobile bind -v -target=android -androidapi 21 -ldflags='-s -w -checklinkname=0' ./
           
       - name: Copy compiled AAR to v2rayNG
         run: |
